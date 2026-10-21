@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Congratulations, Nurse Lizzy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,500&family=Pinyon+Script&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff1f4; --bg2:#ffe3ea; --ink:#4a1730; --muted:#8a5568; --rose:#d93a63; --gold:#c9972b;
+  --env:#f3c9d3; --env2:#f9dbe2; --flap:#efb7c6; --card:#fffaf3;
+  --k:1px; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (min-width:900px){:root{--k:1.35px}}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#2a0f1e; --bg2:#3b1429; --ink:#ffe9ef; --muted:#e3adbd; --rose:#ff7a9c; --gold:#e8bb55; --env:#7a3a52; --env2:#8d4862; --flap:#6a2f46; color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#2a0f1e; --bg2:#3b1429; --ink:#ffe9ef; --muted:#e3adbd; --rose:#ff7a9c; --gold:#e8bb55; --env:#7a3a52; --env2:#8d4862; --flap:#6a2f46; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+section{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:48px 22px;overflow:hidden;scroll-snap-align:start}
+section:nth-of-type(even){background:linear-gradient(var(--bg2),var(--bg))}
+.in{position:relative;z-index:2;max-width:680px}
+.script{font-family:"Pinyon Script",cursive;color:var(--rose);font-weight:400;line-height:1.1;margin:0}
+h1,h2{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.04}
+h1{font-size:clamp(2.5rem,11vw,5rem);font-weight:800;letter-spacing:-.02em}
+.congrats{font-size:clamp(3rem,15vw,6rem)}
+.seal{display:inline-block;margin-top:22px;padding:9px 20px;border-radius:999px;border:2px solid var(--gold);color:var(--gold);font-weight:700;letter-spacing:.02em;background:color-mix(in srgb,var(--gold) 10%,transparent)}
+.cue{position:absolute;bottom:22px;left:50%;margin-left:-10px;width:20px;height:20px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);animation:bob 1.8s ease-in-out infinite;z-index:2}
+@keyframes bob{50%{transform:rotate(45deg) translate(5px,5px)}}
+/* flowers */
+.fl,.lf{position:absolute;width:calc(var(--s)*var(--k));margin:calc(var(--s)*var(--k)/-2) 0 0 calc(var(--s)*var(--k)/-2);transform:rotate(var(--r,0deg));animation:sway 6s ease-in-out infinite;animation-delay:var(--d,0s);z-index:1}
+.lf{color:#3f8a5c}
+.lf.dk{color:#2f6f49}
+@keyframes sway{50%{transform:rotate(calc(var(--r,0deg) + 6deg))}}
+.c0{color:#e0476b}.c1{color:#f48fb1}.c2{color:#ffa77f}.c3{color:#b394ea}.c4{color:#fff0f4}
+/* badges */
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px auto 0;max-width:460px}
+.b{background:color-mix(in srgb,var(--bg) 78%,#fff);border:1.5px solid var(--rose);border-radius:20px;padding:18px 10px}
+.b strong{display:block;font-family:Fraunces,serif;font-size:2rem;color:var(--rose)}
+.b span{font-size:.88rem;color:var(--muted)}
+.rib{margin-top:26px;font-family:Fraunces,serif;font-style:italic;font-size:1.3rem;color:var(--gold)}
+/* envelope */
+.env{position:relative;width:min(84vw,340px);aspect-ratio:3/2;margin:34px auto 0;cursor:pointer;perspective:900px;border:0;background:none;padding:0;display:block}
+.env>*{position:absolute}
+.back{inset:0;background:var(--env);border-radius:8px;box-shadow:0 18px 40px rgba(120,20,60,.25)}
+.paper{left:7%;right:7%;top:7%;height:84%;background:var(--card);border-radius:4px;z-index:2;transition:transform .9s .55s;display:grid;place-items:center;font-family:"Pinyon Script",cursive;font-size:1.7rem;color:#b4294f}
+.pocket{inset:0;z-index:3;background:var(--env2);clip-path:polygon(0 0,50% 56%,100% 0,100% 100%,0 100%);border-radius:8px}
+.flap{left:0;right:0;top:0;height:56%;background:var(--flap);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .7s;z-index:4}
+.heart{left:50%;top:44%;margin:-18px 0 0 -18px;width:36px;height:36px;z-index:5;font-size:1.7rem;line-height:36px;transition:opacity .3s;animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.18)}}
+.env.open .flap{transform:rotateX(180deg);z-index:1}
+.env.open .paper{transform:translateY(-38%)}
+.env.open .heart{opacity:0;animation:none}
+.hint{margin-top:22px;color:var(--muted)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+/* letter overlay */
+.ov{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:18px;background:rgba(50,10,30,.6);backdrop-filter:blur(4px)}
+.ov.show{display:grid;animation:fade .6s ease-out}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.card{position:relative;width:min(560px,100%);max-height:88svh;overflow:auto;background:var(--card);color:#4a1730;border-radius:14px;padding:46px 26px 28px;text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.card .top{position:absolute;top:-6px;left:0;right:0;height:56px;pointer-events:none}
+.card .top .fl{animation:none}
+.card h3{font-family:"Pinyon Script",cursive;font-weight:400;font-size:2.3rem;color:#c02a55;margin:6px 0 10px}
+.card p{font-family:Fraunces,Georgia,serif;font-size:1.08rem;line-height:1.7;margin:0 0 14px}
+.card .pray{border-left:3px solid #e8a0b4;padding-left:14px;font-style:italic}
+.card .sig{font-family:"Pinyon Script",cursive;font-size:1.9rem;color:#c02a55;margin:10px 0 0}
+.x{position:sticky;float:right;top:0;margin:-34px -14px 0 0;width:38px;height:38px;padding:0;border-radius:50%;border:0;background:#f3c9d3;color:#7a1f3d;font-size:1.2rem;cursor:pointer;z-index:3}
+.fly{position:fixed;bottom:-40px;font-size:1.7rem;pointer-events:none;animation:up 3.4s ease-in forwards;z-index:30}
+@keyframes up{to{transform:translateY(-112vh) rotate(30deg);opacity:0}}
+@media (prefers-reduced-motion: reduce){
+  .fl,.lf,.cue,.heart{animation:none}
+  .paper,.flap{transition:none}
+  .fly{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="ring"><ellipse cx="0" cy="-27" rx="12" ry="27"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(45)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(90)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(135)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(180)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(225)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(270)"/><ellipse cx="0" cy="-27" rx="12" ry="27" transform="rotate(315)"/></g>
+<symbol id="flower" viewBox="-60 -60 120 120"><g fill="currentColor"><use href="#ring"/></g><g fill="#fff" opacity=".3" transform="rotate(22.5) scale(.62)"><use href="#ring"/></g><circle r="9" fill="#e9b949"/><circle r="4" fill="#b8841f"/></symbol>
+<symbol id="leaf" viewBox="-30 -95 60 100"><path d="M0 0C26-28 26-62 0-92C-26-62-26-28 0 0Z" fill="currentColor"/><path d="M0 -4V-84" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none"/></symbol>
+</defs></svg>
+
+<section id="s1">
+  <div class="in">
+    <p class="script congrats">Congratulations</p>
+    <h1>Adeofe Lizzy<br>Adewonuola</h1>
+    <span class="seal">First Class 🎓</span>
+  </div>
+  <div class="cue" aria-hidden="true"></div>
+</section>
+
+<section id="s2">
+  <div class="in">
+    <p class="script" style="font-size:clamp(2.4rem,10vw,3.6rem)">Look at those letters</p>
+    <div class="badges">
+      <div class="b"><strong>RN</strong><span>Registered Nurse</span></div>
+      <div class="b"><strong>RM</strong><span>Registered Midwife</span></div>
+      <div class="b"><strong>RPHN</strong><span>Registered Public Health Nurse</span></div>
+      <div class="b"><strong>BLS</strong><span>Basic Life Support</span></div>
+    </div>
+    <p class="rib">and all of it with First Class</p>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="in">
+    <p class="script" style="font-size:clamp(2.6rem,11vw,4rem)">One last thing</p>
+    <button class="env" id="env" type="button" aria-label="Open the letter">
+      <span class="back"></span>
+      <span class="paper">For Lizzy</span>
+      <span class="pocket"></span>
+      <span class="flap"></span>
+      <span class="heart">💗</span>
+    </button>
+    <p class="hint" id="hint">Tap the envelope</p>
+  </div>
+</section>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-label="Letter">
+  <div class="card">
+    <button class="x" id="x" type="button" aria-label="Close letter">×</button>
+    <div class="top" id="top"></div>
+    <h3>Dearest Lizzy,</h3>
+    <p>Congratulations, Nurse Adeofe Lizzy Adewonuola, RN, RM, RPHN, BLS, and with a First Class on top! I’m so proud of you. You made all of it look easy while the rest of us just stared.</p>
+    <p class="pray">May God who began this good work in you complete it. May every door open before you reach the handle. May your hands heal, your words comfort, and your name be spoken with honour in every ward you walk into. May He order your steps, guard your health, and fill your life with joy, favour, and people who love you well.</p>
+    <p>Also, I’m fairly sure any patient who sees that smile will recover twice as fast. I’m already hoping to fall a little sick soon. 😄</p>
+    <p>Today belongs to you, so celebrate loud. And when the party quiets down, I’d love to celebrate you properly. Dinner, just the two of us?</p>
+    <p class="sig" id="sig">With love and prayers</p>
+  </div>
+</div>
+
+<script>
+var MY_NAME = ""; // put your name here, e.g. "Tunde"
+
+(function(){
+  // [type, x%, y%, size, colorClass, rotation, delay]
+  var S = {
+    s1:[['l',0,8,150,'',-35],['l',12,1,120,'dk',20],['l',100,10,150,'',38],['l',88,2,120,'dk',-18],['l',0,97,160,'',-62],['l',100,96,160,'dk',62],['l',16,102,120,'',12],['l',84,102,125,'',-14],
+        ['f',6,10,125,'c0',0,0],['f',21,3,80,'c1',20,1],['f',95,8,115,'c3',0,2],['f',81,5,72,'c2',30,.5],['f',2,30,70,'c4',0,1.5],['f',98,32,62,'c0',0,2.5],['f',5,91,135,'c1',10,1],['f',19,98,92,'c2',0,2],['f',95,93,130,'c0',0,.5],['f',79,99,88,'c3',0,1.5],['f',50,-1,72,'c4',0,1]],
+    s2:[['l',0,6,130,'',-40],['l',100,92,140,'dk',50],['l',0,94,120,'dk',-50],['l',100,6,120,'',40],
+        ['f',4,5,100,'c3',0,0],['f',96,95,105,'c1',0,1],['f',3,95,95,'c0',0,2],['f',97,5,90,'c2',0,.5],['f',92,40,56,'c4',0,1.5],['f',8,60,56,'c4',0,2]],
+    s3:[['l',0,10,130,'',-30],['l',100,90,140,'dk',55],['l',100,8,120,'dk',30],['l',0,92,130,'',-55],
+        ['f',5,8,115,'c0',0,0],['f',95,10,95,'c1',0,1],['f',4,93,115,'c2',0,2],['f',96,92,120,'c3',0,.5],['f',22,95,70,'c4',0,1.5],['f',80,3,70,'c4',0,2]]
+  };
+  var NS = "http://www.w3.org/2000/svg";
+  function mk(id, cfg, host){
+    var t = cfg[0];
+    var svg = document.createElementNS(NS,"svg");
+    var u = document.createElementNS(NS,"use");
+    if(t==='f'){ svg.setAttribute("viewBox","-60 -60 120 120"); u.setAttribute("href","#flower"); svg.setAttribute("class","fl "+cfg[4]); }
+    else { svg.setAttribute("viewBox","-30 -95 60 100"); u.setAttribute("href","#leaf"); svg.setAttribute("class","lf "+cfg[4]); svg.style.height = "auto"; }
+    svg.appendChild(u);
+    svg.setAttribute("aria-hidden","true");
+    svg.style.left = cfg[1]+"%"; svg.style.top = cfg[2]+"%";
+    svg.style.setProperty("--s", cfg[3]);
+    svg.style.setProperty("--r", (cfg[5]||0)+"deg");
+    svg.style.setProperty("--d", (cfg[6]||0)+"s");
+    host.appendChild(svg);
+  }
+  Object.keys(S).forEach(function(id){
+    var host = document.getElementById(id);
+    S[id].forEach(function(c){ mk(id,c,host); });
+  });
+
+  // little flowers along the top of the letter
+  var top = document.getElementById("top");
+  [[10,'c0',44],[28,'c1',36],[50,'c2',48],[72,'c3',36],[90,'c0',44]].forEach(function(a){
+    var svg = document.createElementNS(NS,"svg"), u = document.createElementNS(NS,"use");
+    svg.setAttribute("viewBox","-60 -60 120 120"); u.setAttribute("href","#flower"); svg.appendChild(u);
+    svg.setAttribute("class","fl "+a[1]); svg.style.left = a[0]+"%"; svg.style.top = "20px"; svg.style.setProperty("--s", a[2]/1.0);
+    svg.style.setProperty("--k","1px");
+    top.appendChild(svg);
+  });
+
+  if(MY_NAME) document.getElementById("sig").textContent = "With love and prayers, " + MY_NAME;
+
+  var env = document.getElementById("env"), ov = document.getElementById("ov"), hint = document.getElementById("hint");
+  function rain(){
+    var e = ["🌸","🌷","💗","🌹","🎓","🌼"];
+    for(var i=0;i<22;i++){
+      var s = document.createElement("span"); s.className = "fly"; s.textContent = e[i%e.length];
+      s.style.left = (Math.random()*92)+"vw"; s.style.animationDelay = (Math.random()*1.4)+"s";
+      document.body.appendChild(s);
+      setTimeout((function(el){return function(){el.remove();};})(s), 5200);
+    }
+  }
+  env.addEventListener("click", function(){
+    if(env.classList.contains("open")){ ov.classList.add("show"); return; }
+    env.classList.add("open"); hint.textContent = "Tap again to read it";
+    rain();
+    setTimeout(function(){ ov.classList.add("show"); }, 1700);
+  });
+  function close(){ ov.classList.remove("show"); }
+  document.getElementById("x").addEventListener("click", close);
+  ov.addEventListener("click", function(e){ if(e.target===ov) close(); });
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") close(); });
+})();
+</script>
+</body>
+</html>
